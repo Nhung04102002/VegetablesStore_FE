@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products_Info</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/5a213e1813.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<style>
+    .title-footer {
+        font-size: 18px;
+    }
+
+    footer {
+        font-size: 13px;
+        margin-top: 20px;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    a {
+        text-decoration: none;
+        color: #5CB85C;
+    }
+
+    .listPage {
+        padding: 10px;
+        text-align: center;
+        list-style: none;
+        margin: 0 auto;
+    }
+
+    .listPage li {
+        background-color: white;
+        padding: 10px 20px;
+        display: inline-block;
+        margin: 0 10px;
+        cursor: pointer;
+    }
+
+    .listPage .active {
+        background-color: #5CB85C;
+        color: white;
+    }
+
+    .listPage2 {
+        padding: 10px;
+        text-align: center;
+        list-style: none;
+        margin: 0 auto;
+    }
+
+    .listPage2 li {
+        background-color: white;
+        padding: 10px 20px;
+        display: inline-block;
+        margin: 0 10px;
+        cursor: pointer;
+    }
+
+    .listPage2 .active {
+        background-color: #5CB85C;
+        color: white;
+    }
+
+    .counter {
+        display: flex;
+        align-items: center;
+        justify-content: right;
+    }
+
+    .counter input {
+        width: 30px;
+        line-height: 20px;
+        font-size: 15px;
+        text-align: center;
+        appearance: none;
+        border: 0.5px solid gray;
+    }
+
+    .counter span {
+        display: block;
+        font-size: 15px;
+        padding: 0 10px;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    div.description {
+        padding: 20px 30px;
+        height: 250px;
+        overflow: auto;
+        border: 0.5px solid;
+        border-radius: 10px;
+    }
+
+    #search {
+        width: 40%;
+    }
+
+    @media only screen and (max-width: 915px) {
+        #search {
+            width: 66%;
+        }
+
+        #imgBr {
+            width: 70px;
+            margin-left: 10px;
+        }
+
+        #review {
+            width: 100%;
+        }
+    }
+
+    .nav-link {
+        color: black;
+    }
+
+    .star {
+        color: #FFD700;
+    }
+</style>
+
+<body>
+    <!-- create navigation bar ( header) -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top shadow-sm">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <a class="navbar-brand" href="./index.html"><img id="imgBr"
+              src="https://img.freepik.com/premium-vector/organic-icon-100-percent-organic-product-label_349999-1003.jpg?w=2000"
+              alt="brand_icon" width="100px"></a>
+          <form class="d-flex" id="search" role="search" th:action="@{/}" method="get">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+              name="searchProductName">
+            <button style="background-color: #5CB85C; color:white;" class="btn btn-outline-success border-0"
+              type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+          </form>
+    
+          <div class="collapse navbar-collapse ms-3" id="navbarTogglerDemo02">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="./index.html#productAll">SẢN PHẨM</a>
+              </li>
+              <div class="dropdown nav-item">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  DANH MỤC
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#fruits">Trái cây</a></li>
+                  <li><a class="dropdown-item" href="#leaf">Rau ăn lá</a></li>
+                  <li><a class="dropdown-item" href="#">Rau ăn củ</a></li>
+                </ul>
+              </div>
+    
+              <li class="nav-item">
+                <a class="nav-link" href="./bill.html">ĐƠN HÀNG</a>
+              </li>
+            </ul>
+    
+          </div>
+          <a class="nav-link" style="margin: 0 2%;" href="./cart.html"><i class="fa-solid fa-basket-shopping"><span
+                class="translate-middle badge border border-light rounded-circle bg-danger"
+                style="--bs-badge-font-size: 0.5em;">10</span></i>GIỎ HÀNG</a>
+          <div class="dropdown">
+            <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              User
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="#">Thông tin cá nhân</a></li>
+              <li><a class="dropdown-item" href="#">Sửa thông tin cá nhân</a></li>
+              <li><a class="dropdown-item" href="#">Đổi mật khẩu</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" id="logout" href="./login.html">Đăng xuất</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    <div>
+        <div style="display: flex; background-color: #5CB85C; color:white;">
+            <div class="py-3 px-5">
+                <h5>Quản lý sản phẩm / Cà chua</h5>
+            </div>
+        </div>
+
+        <div class="row px-5 py-3 gx-5">
+            <div class="col">
+                <div class="row">
+                    <div class="col-6" id="info">
+                        <img src="/images/image 5.png" width="300" height="300">
+
+                    </div>
+                    <div class="col">
+                        <h3 class="mt-3 mb-5">Cà chua</h3>
+                        <div class="row">
+                            <div class="col">
+                                <h6 class="mb-4">Giá bán</h6>
+                                <h6 class="mb-4">Tình trạng</h6>
+                                <h6 class="mb-4">Hạn sử dụng</h6>
+                                <h6 class="mb-4">Số lượng</h6>
+                            </div>
+                            <div class="col" style="text-align: right;">
+                                <p class="mb-4">15.000 ₫</p>
+                                <p class="mb-4" id="checkQuantity">Còn hàng</p>
+                                <p class="mb-4">15/12/2023</p>
+                                <div class="mb-4">
+                                    <div class="counter">
+                                        <span class="down" onClick='decreaseCount(event, this)'>-</span>
+                                        <input type="text" value="1" id="inputQuantity" th:onchange="inputValue()">
+                                        <span class="up" onClick='increaseCount(event, this)'>+</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-success border-0" style="background-color: #5CB85C; float:right;"><i
+                                class="fa-solid fa-basket-shopping"></i> Thêm vào
+                            giỏ
+                        </button>
+
+
+                    </div>
+                </div>
+
+                <div class="mt-2 d-flex">
+                    <div class="d-flex"><span class="me-1">5</span>
+                        <div id="star-rating">
+                            <span class="star" data-rating="5"></span>
+                            <span class="star" data-rating="4"></span>
+                            <span class="star" data-rating="3"></span>
+                            <span class="star" data-rating="2"></span>
+                            <span class="star" data-rating="1"></span>
+                        </div>
+                    </div>
+                    <div class="mx-3"><span>20</span> Đánh giá</div>
+                    <div><span>30</span> Đã bán</div>
+                </div>
+
+                <div class="mt-3">
+                    <h6>Mô tả sản phẩm</h6>
+                    <div class="description">
+                        <p>
+                            Cà chua đỏ Loại 1 WinEco chứa nhiều các chất dinh dưỡng và vitamin, bao gồm lượng vitamin A,
+                            vitamin C và vitamin K một cách ấn tượng, bên cạnh đó lượng vitamin B6, folate và thiamin
+                            cũng
+                            rất đáng kể. Cà chua cũng là nguồn kali, mangan, magiê, phốt pho và đồng. Hơn nữa trong cà
+                            chua
+                            cũng chứa chất xơ và protein, cũng như một số hợp chất hữu cơ như lycopene góp phần vào lợi
+                            ích
+                            sức khoẻ tổng thể.
+                            <br>
+                            Ngoài ra, Cà chua đỏ Loại 1 WinEco có chứa một lượng lớn lycopene, một chất chống oxy hoá có
+                            hiệu quả cao trong việc thu nhặt ung thư gây ra các gốc tự do. Lợi ích này thậm chí có thể
+                            thu
+                            được từ các sản phẩm cà chua được xử lý nhiệt như số tương cà. Lycopene trong cà chua phòng
+                            chống ung thư và có hiệu quả đặc biệt trong việc chống lại ung thư tuyến tiền liệt, ung thư
+                            cổ
+                            tử cung, ung thư dạ dày và trực tràng, cũng như ung thư họng và thực quản. Nó cũng bảo vệ
+                            chống
+                            ung thư vú và ung thư miệng, theo các nghiên cứu của Trường Y tế Công cộng Harvard.
+                            <br>
+                            Lưu ý:
+                            <br>
+                            - Hạn sử dụng thực tế quý khách vui lòng xem trên bao bì.
+                            <br>
+                            - Hình sản phẩm chỉ mang tính chất minh họa, hình thực tế bao bì của sản phẩm tùy thời điểm
+                            sẽ
+                            khác so với thực tế.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 mt-3" id="review">
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
+                            data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home"
+                            aria-selected="true">
+                            <h6>Đánh giá về sản phẩm</h6>
+                        </button>
+                        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
+                            type="button" role="tab" aria-controls="nav-profile" aria-selected="false">
+                            <h6>Thắc mắc về sản phẩm</h6>
+                        </button>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"
+                        tabindex="0">
+                        <div class="list border p-2 pb-0" id="list">
+
+                            <div class="item border mb-2 p-3">
+                                <div class="row">
+                                    <div class="col-1">
+                                        <div style="width:50px; height:50px;" class="rounded-circle border text-center">
+                                            <h5 style="color: #5cb85c; line-height:50px; display: inline-flex;">
+                                                <span>A</span>
+                                                <span>N</span>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-7">
+                                        <div class="ms-3">
+                                            <h6>Nguyen Van An</h6>
+                                            <p>01/12/2023</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-4 text-end" style="color:#ddd;">
+                                        <div style="width:108px; float:right;" id="star">
+                                            <p style="display: none">5</p>
+                                            <i class="fa-solid fa-star" id="1"></i>
+                                            <i class="fa-solid fa-star" id="2"></i>
+                                            <i class="fa-solid fa-star" id="3"></i>
+                                            <i class="fa-solid fa-star" id="4"></i>
+                                            <i class="fa-solid fa-star" id="5"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p class="m-0">Tươi, ngon, rẻ</p>
+                                </div>
+                                <div class="text-end">
+
+                                    <div id="pills-tab" role="tablist">
+                                        <button class="border-0 me-2" type="button"
+                                            id="pills-home-tab1" data-bs-toggle="pill"
+                                            data-bs-target="#pills-home1" role="tab"
+                                            aria-controls="pills-home1">
+                                            Phản hồi
+                                        </button>
+                                    </div>
+
+                                    <div class="tab-content mt-2" id="pills-tabContent">
+                                        <div class="tab-pane fade show" id="pills-home1"
+                                            role="tabpanel" aria-labelledby="pills-home-tab1"
+                                            tabindex="0">
+                                            <div class="ps-4 border-start">
+
+                                                    <div class="border p-3">
+                                                        <div class="row text-start">
+                                                            <div class="col-1">
+                                                                <div style="width:50px; height:50px;"
+                                                                    class="rounded-circle border text-center">
+                                                                    <h5
+                                                                        style="color: #5cb85c; line-height:50px; display: inline-flex;">
+                                                                        <span>A</span>
+                                                                        <span>D</span>
+                                                                    </h5>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-7">
+                                                                <div class="ms-3">
+                                                                    <h6>ADMIN</h6>
+                                                                    <p>09/12/2023</p>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="row mb-1 text-start">
+                                                            <p>Cảm ơn ^^</p>
+                                                        </div>
+                                                    </div>
+
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="position: sticky; top:100%; margin:0 auto;">
+                            <ul class="listPage">
+                                <li class="active">1</li>
+                                <li>2</li>
+                                <li>3</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"
+                        tabindex="0">
+                        <div class="list2 border p-2 pb-0">
+
+                            <div class="item2 border mb-2 p-3">
+                                <div class="row">
+                                    <div class="col-1">
+                                        <div style="width:50px; height:50px;" class="rounded-circle border text-center">
+                                            <h5 style="color: #5cb85c; line-height:50px; display: inline-flex;">
+                                                <span>T</span>
+                                                <span>T</span>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-7">
+                                        <div class="ms-3">
+                                            <h6>Tran Anh Tuyet</h6>
+                                            <p>05/12/2023</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <p class="m-0">Có chương trình khuyến mãi cho sản phẩm này không?</p>
+                                </div>
+                                <div class="text-end">
+
+                                    <div role="tablist">
+                                        <button class="border-0 me-2" type="button"
+                                            id="'pills-home-tab2" data-bs-toggle="pill"
+                                            data-bs-target="#pills-home2" role="tab"
+                                            aria-controls="pills-home2">
+                                            Phản hồi
+                                        </button>
+                                        <a href="#">
+                                            <button class="border-0">Xoá</button>
+                                        </a>
+                                    </div>
+
+                                    <div class="tab-content mt-2">
+                                        <div class="tab-pane fade show " id="pills-home2"
+                                            role="tabpanel" aria-labelledby="pills-home-tab2"
+                                            tabindex="0">
+                                            <div class="ps-4 border-start">
+                                                
+                                                    <div class="border p-3">
+                                                        <div class="row text-start">
+                                                            <div class="col-1">
+                                                                <div style="width:50px; height:50px;"
+                                                                    class="rounded-circle border text-center">
+                                                                    <h5
+                                                                        style="color: #5cb85c; line-height:50px; display: inline-flex;">
+                                                                        <span>A</span>
+                                                                        <span>D</span>
+                                                                    </h5>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-7">
+                                                                <div class="ms-3">
+                                                                    <h6>ADMIN</h6>
+                                                                    <p>05/12/2023</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-4 text-end">
+                                                                <a href="#">
+                                                                    <button class="border-0">
+                                                                        Xoá
+                                                                    </button>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-1 text-start">
+                                                            <p>Dạ có đấy khách ơi</p>
+                                                        </div>
+                                                    </div>
+
+
+                                            </div>
+
+
+                                            <div class="input-group mt-2">
+                                                <form class="w-100 d-flex" method="post"
+                                                    th:action="'/productInfoUser/'+ ${productInfo.productID} +'/newReply'"
+                                                    th:object="${addNew}">
+                                                    <input type="text" th:value="${userLogged}" name="user"
+                                                        style="display: none">
+                                                    <input type="text" th:value="${review.reviewID}" name="replyID"
+                                                        style="display: none">
+                                                    <input type="text" th:value="${productInfo.productID}"
+                                                        name="product" style="display: none">
+                                                    <input type="text" class="form-control" th:field="*{content}"
+                                                        th:id="'reply' + ${review.reviewID}"
+                                                        th:onchange="'enterReply('+${review.reviewID}+')'" required>
+                                                    <button class="btn btn-primary" type="submit"
+                                                        th:id="'submitReply' + ${review.reviewID}" disabled><i
+                                                            class="fa-solid fa-paper-plane"></i></button>
+                                                </form>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="input-group mb-2">
+                                <form class="w-100 d-flex" method="post"
+                                    th:action="'/productInfoUser/'+ ${productInfo.productID} +'/newComment'"
+                                    th:object="${addNew}">
+                                    <input type="text" th:value="${userLogged}" name="user" style="display: none">
+                                    <input type="text" th:value="${productInfo.productID}" name="product"
+                                        style="display: none">
+                                    <input type="text" class="form-control" th:field="*{content}" id="comment"
+                                        onchange="enterComment()" required>
+                                    <button class="btn btn-primary" type="submit" id="submitComment" disabled><i
+                                            class="fa-solid fa-paper-plane"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                        <div style="position: sticky; top:100%; margin:0 auto;">
+                            <ul class="listPage2">
+                                <li class="active">1</li>
+                                <li>2</li>
+                                <li>3</li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="row" style="background-color: #333; color:white; padding: 15px 200px;">
+            <div class="col-6">
+                <div class="title-footer"><span>Giới thiệu</span></div>
+                <hr>
+                <p>
+                    ORGANIC - Chuyên cung cấp tất cả các mặt hàng rau củ quả sạch, không chất bảo quản, an
+                    toàn cho sức khoẻ, đáp ứng nhu cầu của tất cả khách hàng.
+                </p>
+                <p>
+                    <i class="fa fa-phone"></i> <span class="margin-left-md me-3">0935708386</span>
+                    <i class="fa fa-envelope margin-left-xl"></i> <span class="margin-left-md">vegetablestore@gmail.com
+                    </span>
+                </p>
+                <ul class="list-inline d-flex">
+                    <li><a href="#">Quyền riêng tư</a></li>
+                    <li class="mx-3"><a href="#">Điều khoản</a></li>
+                    <li><a href="#">Liên hệ</a></li>
+                </ul>
+
+            </div>
+            <div class="col-3">
+                <div class="title-footer"><span>Phương thức thanh toán</span></div>
+                <hr>
+                <p>Hỗ trợ thanh toán qua VNQR-Pay, Paypal, Online Banking và các loại thẻ tín dụng</p>
+                <img class="img-responsive"
+                    src="https://misolhouse.com/themes/default/shop/assets//images/payment-methods.png"
+                    alt="Payment Methods" width="250">
+
+
+
+            </div>
+            <div class="col-3">
+                <div class="title-footer"><span>Theo dõi</span></div>
+                <hr>
+                <p>Theo dõi trực tiếp các trang của chúng tôi trên mạng xã hội</p>
+                <ul class="follow-us d-flex p-0">
+                    <li class="me-3"><a target="_blank" href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a target="_blank" href="#"><i class="fa fa-instagram"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row bg-dark text-white" style="height: 50px; padding:15px 200px">
+            <div class="copyright line-height-lg col">
+                &copy; 2023 ORGANIC
+            </div>
+            <div class="col">Shop thực phẩm sạch số 1 Đà Nẵng - Luôn tươi ngon mỗi ngày! </div>
+        </div>
+
+    </footer>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+
+<script th:inline="javascript">
+
+    let thisPage = 1;
+    let limit = 3;
+    let list = document.querySelectorAll('.list .item');
+
+    function loadItem() {
+        let beginGet = limit * (thisPage - 1);
+        let endGet = limit * thisPage - 1;
+        list.forEach((item, key) => {
+            if (key >= beginGet && key <= endGet) {
+                item.style.display = 'block';
+
+            } else {
+                item.style.display = 'none';
+            }
+        })
+        listPage();
+
+    }
+
+    loadItem();
+
+    function listPage() {
+        let count = Math.ceil(list.length / limit);
+        document.querySelector('.listPage').innerHTML = '';
+
+        if (thisPage != 1) {
+            let prev = document.createElement('li');
+            prev.innerHTML = '<i class="fa-solid fa-angles-left"></i>';
+            prev.setAttribute('onclick', "changePage(" + (thisPage - 1) + ")");
+            document.querySelector('.listPage').appendChild(prev);
+        }
+
+        for (i = 1; i <= count; i++) {
+            let newPage = document.createElement('li');
+            newPage.innerText = i;
+            if (i == thisPage) {
+                newPage.classList.add('active');
+            }
+            newPage.setAttribute('onclick', "changePage(" + i + ")");
+            document.querySelector('.listPage').appendChild(newPage);
+        }
+        if (thisPage != count) {
+            let next = document.createElement('li');
+            next.innerHTML = '<i class="fa-solid fa-angles-right"></i>';
+            next.setAttribute('onclick', "changePage(" + (thisPage + 1) + ")");
+            document.querySelector('.listPage').appendChild(next);
+        }
+    }
+
+    function changePage(i) {
+        thisPage = i;
+        loadItem();
+    }
+
+</script>
+<script th:inline="javascript">
+    /*Hiển thị sao đánh giá*/
+    let item = document.getElementById("list").children
+    let count = item.length;
+
+    for (let i = 0; i < count; i++) {
+        let perItem = item[i].children;
+        let row1 = perItem[0].children;
+        let col3 = row1[2].children;
+        let review = col3[0].children;
+
+        let star = review[0].innerText;
+        if (star > 0) {
+            for (let j = 1; j <= star; j++) {
+                review[j].style.color = "#FFD700";
+            }
+        } else {
+            for (let j = 0; j < 6; j++) {
+                review[j].style.display = "none";
+            }
+        }
+    }
+
+    function enterComment() {
+        let comment = document.getElementById('comment').value;
+        if ((/^\s*$/.test(comment))) {
+            document.getElementById('submitComment').disabled = true;
+        } else {
+            document.getElementById('submitComment').disabled = false;
+        }
+    }
+
+    function enterReply(a) {
+        let reply = document.getElementById('reply' + a).value;
+        if ((/^\s*$/.test(reply))) {
+            document.getElementById('submitReply' + a).disabled = true;
+        } else {
+            document.getElementById('submitReply' + a).disabled = false;
+        }
+    }
+
+    // Set the rating value dynamically based on your data
+    const ratingValue = 5; // Replace with your actual rating value
+
+    // Get the star rating container element
+    const starRatingContainer = document.getElementById("star-rating");
+
+    // Calculate the number of filled stars
+    const filledStars = Math.floor(ratingValue);
+    // Calculate the number of half-filled star
+    const halfFilledStar = Math.round(ratingValue - filledStars);
+
+    // Loop through each star element and set the appropriate data-rating attribute
+    const stars = starRatingContainer.querySelectorAll(".star");
+    stars.forEach((star, index) => {
+        if (index < filledStars) {
+            star.innerHTML = '<i class="fa-solid fa-star"></i>';
+        } else if (index === filledStars && halfFilledStar === 1) {
+            star.innerHTML = '<i class="fa-solid fa-star-half-stroke"></i>';
+        } else {
+            star.innerHTML = '<i class="fa-regular fa-star"></i>';
+        }
+    });
+
+</script>
+<script>
+    let thisPage2 = 1;
+    let limit2 = 5;
+    let list2 = document.querySelectorAll('.list2 .item2');
+
+    function loadItem2() {
+        let beginGet = limit2 * (thisPage2 - 1);
+        let endGet = limit2 * thisPage2 - 1;
+        list2.forEach((item, key) => {
+            if (key >= beginGet && key <= endGet) {
+                item.style.display = 'block';
+
+            } else {
+                item.style.display = 'none';
+            }
+        })
+        listPage2();
+
+    }
+
+    loadItem2();
+
+    function listPage2() {
+        let count = Math.ceil(list2.length / limit2);
+        document.querySelector('.listPage2').innerHTML = '';
+
+        if (thisPage2 != 1) {
+            let prev = document.createElement('li');
+            prev.innerHTML = '<i class="fa-solid fa-angles-left"></i>';
+            prev.setAttribute('onclick', "changePage2(" + (thisPage2 - 1) + ")");
+            document.querySelector('.listPage2').appendChild(prev);
+        }
+
+        for (let i = 1; i <= count; i++) {
+            let newPage = document.createElement('li');
+            newPage.innerText = i;
+            if (i == thisPage2) {
+                newPage.classList.add('active');
+            }
+            newPage.setAttribute('onclick', "changePage2(" + i + ")");
+            document.querySelector('.listPage2').appendChild(newPage);
+        }
+        if (thisPage2 != count) {
+            let next = document.createElement('li');
+            next.innerHTML = '<i class="fa-solid fa-angles-right"></i>';
+            next.setAttribute('onclick', "changePage2(" + (thisPage2 + 1) + ")");
+            document.querySelector('.listPage2').appendChild(next);
+        }
+    }
+
+    function changePage2(i) {
+        thisPage2 = i;
+        loadItem2();
+    }
+</script>
+
+</html>
